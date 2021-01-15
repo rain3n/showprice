@@ -1,0 +1,18 @@
+{% extends "users/base.html"%}
+
+{% block content %}
+	<div class="main-w3layouts wrapper">
+        <h1><a  href="{% url 'shop-home' %}">ShowPrice Logo</a> </h1>
+		<h1>Login</h1>
+		<div class="main-agileinfo">
+			<div class="agileits-top">
+				<form method="POST">
+					{% csrf_token %}
+					{{ form }}
+					<input type="submit" value="LOGIN">
+				</form>
+				<p>New to ShowPrice? <a href="{% url 'register' %}"> Sign Up Now!</a></p>
+			</div>
+		</div>	
+	</div>
+{% endblock content %}

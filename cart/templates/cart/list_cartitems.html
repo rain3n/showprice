@@ -1,0 +1,91 @@
+{% extends "cart/base.html" %}
+{% load humanize %}
+{% load thumbnail %}
+{% load static %}
+
+{% block css %}
+<link href="{% static 'cart/main.css' %}" rel="stylesheet">
+{% endblock css %}
+
+<!-- Page Content -->
+{% block cart %}
+    <div class="heading mt-5">
+        <h1>
+        My Shopping Cart
+        </h1>
+    </div>
+
+    <div class="row pl-4 pt-2 pb-2">
+
+        <div class="col-3">
+            <a href="{% url 'shop-home' %}" class="btn btn-primary">Continue Shopping</a>
+        </div>
+
+
+
+    </div>
+    <div class="table">
+
+        <div class="layout-inline row th pl-5">
+            <div class="col col-pro pl-5 pr-5">Product</div>
+            <div class="col col-price align-center pl-5">
+                Price
+            </div>
+            <div class="col col-qty align-center">QTY</div>
+            <div class="col">Total</div>
+        </div>
+        {% if not cartitems %}
+            <p class="center-align ml-5 mt-2">Your cart is empty</p>
+        {% endif %}
+
+        {% for item in cartitems %}
+        <div class="layout-inline row">
+            
+            <div class="col-4 col-pro ">
+
+                
+                <div class="media ml-3">
+                    <button data-product="{{ item.product.id }}" data-action="remove-all" type="button" class="btn btn-danger update-cart mr-2 mt-4">X</button>
+                    <a href=" {% url 'product-detail' item.product.id %}">
+                        <img class="icon pt-2 pb-2" src="{{ item.product.productimage.image.url }}" />
+                    </a>
+                    <div class="media-body pt-3">
+                        <a href=" {% url 'product-detail' item.product.id %}">{{ item.product.productName }}</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col col-price col-numeric align-center ">
+                <p>P {{ item.product.productPrice|floatformat:2|intcomma }}</p>
+            </div>
+
+            <div class="col col-qty layout-inline ml-5 pr-3">
+                <button data-product="{{ item.product.id }}" data-action="remove" type="button" class="btn btn-dark update-cart">-</button>
+                    <input type="numeric" value="{{ item.quantity }}" readonly />
+                <button data-product="{{ item.product.id }}" data-action="add" type="button" class="btn btn-dark update-cart">+</button>
+                <small>{{ item.product.productStocks }} available</small>
+            </div>
+
+            <div class="col col-total col-numeric">
+                <p>P {{ item.get_total|floatformat:2|intcomma }}</p>
+            </div>
+           
+        </div>
+        {% endfor %}
+        <div class="tf">
+            <div class="row layout-inline">
+                <div class="col pl-5 ml-4">
+                    <p>Total</p>
+                </div>
+                <div class="col pl-3">
+                    <p class="align-center ml-5">P {{ cartitems.0.cart.get_cart_total|floatformat:2|intcomma }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+</div>
+
+
+{% endblock %}

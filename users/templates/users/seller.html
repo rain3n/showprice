@@ -1,0 +1,50 @@
+{% extends "shop/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block css %}
+<link href="{% static 'shop/main.css' %}" rel="stylesheet">
+<link href="{% static 'users/profile.css' %}" rel="stylesheet">
+{% endblock css %}
+
+{% block content %}
+<div class="container pr-2 pb-5">
+    <div class="content-section">
+        <div class="media">
+            <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+            <div class="media-body">
+                <h2 class="account-heading pt-3">{{ user.username }}</h2>
+                <p class="text-secondary pb-2">{{ user.email }}</p>
+            </div>
+        </div>
+
+        <div class="row border-bottom mb-4 pt-3">
+            <div class="col-md-2">
+                <h4><a></a>Store Profile</h3>
+            </div>
+            <div class="col-md-2 pt-2">
+                <h6>
+                    <a href="{% url 'profile' %} ">Account Info</a>
+                </h6>
+            </div>
+            <div class="col-md-2 pt-2">
+                <h6>
+                    <a href="{% url 'buyer-profile' %} ">Buyer Profile</a>
+                </h6>
+            </div>
+        </div>
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset class="form-group">
+              {{ s_form|crispy }}
+              {{ sp_form|crispy }}
+            </fieldset>
+            <div class="form-group">
+              <button class="btn btn-outline-info" type="submit">Update</button>
+            </div>
+          </form>
+
+    </div>
+
+    {% endblock content %}

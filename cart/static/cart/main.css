@@ -1,0 +1,115 @@
+
+body {
+  padding-top: 80px;
+  background: #76b852;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to top, #76b852, #8DC26F);
+  background: -moz-linear-gradient(to top, #76b852, #8DC26F);
+  background: -o-linear-gradient(to top, #76b852, #8DC26F);
+  background: linear-gradient(to top, #76b852, #8DC26F);
+  background-size: cover;
+  background-attachment: fixed;
+  font-family: 'Roboto', sans-serif;
+}
+
+
+h1 {
+  font-weight: bold;
+  font-size: 1;
+}
+
+.icon{
+  width: 7rem;
+}
+
+
+img {
+  max-width: 9em;
+  width: 100%;
+  overflow: hidden; 
+  margin-right: 1em;
+}
+
+
+.heading {
+  padding: 1em;
+  position: relative;
+  background:#cfe4cc;
+  border-radius: 0.6em;
+}
+
+
+.table {
+  background: #cae7c4;
+  border-radius: 0.6em;
+  overflow: hidden;
+  clear: both;
+}
+
+
+.layout-inline > * {
+  display: inline-block;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.th {
+  background: #8DC26F;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.tf {
+  background: #8DC26F;
+  text-align: right;
+}
+
+.tf p {
+  color: rgb(3, 3, 3);
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.col {
+  padding: 1em;
+  width: 12%;
+}
+
+
+.col-qty {
+  text-align: center;
+  width: 17%;
+}
+
+.col-numeric p {
+  font: 1em helvetica;
+}
+
+.col-total p {
+  color: #12c8b1;
+}
+
+
+.row > div {
+  vertical-align: middle;
+}
+
+.row-bg2 {
+  background: #f7f7f7;
+}
+
+.col-qty > * {
+  vertical-align: middle; 
+}
+
+.col-qty > input {
+  max-width: 2em;
+}
+
+
+
+
+
+

@@ -1,0 +1,64 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+{% block css %}
+    <link href="{% static 'shop/product.css' %}" rel="stylesheet">
+{% endblock css %}
+
+{% block content %}
+<div class="super_container">
+    <div class="single_product">
+        <div class="container-fluid" style=" background-color: #76b852; padding: 11px;">
+            <div class="row">               
+                <div class="col-lg-4 order-lg-2 order-1">
+                    <div class="image_selected"><img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1565713229/single_4.jpg" alt=""></div>
+                </div>
+                <div class="col-lg-6 order-3">
+                    <div class="product_description">
+                        <div class="product_name">Product Name</div>
+                        <div class="product-rating"><span class="badge badge-success"><i class="fa fa-star"></i> 4.5 Star</span> <span class="rating-review">35 Ratings & 45 Reviews</span></div>
+                        <div> <span class="product_price">P 29,000</span> </div>
+                       
+                        <hr class="singleline">
+                        <div> <span class="product_info">vitae enim euismod, eleifend justo eu, cursus enim. Mauris rhoncus magna sed elit porta, non scelerisque purus malesuada. Nulla efficitur imperdiet venenatis. Morbi rutrum turpis sapien, in vulputate ante rhoncus vel. Nulla facilisi. Fusce interdum at purus at tempus. In hendrerit, nisl a luctus volutpat, mauris enim sagittis a</div>
+
+                        <hr class="singleline">
+                        <div class="order_info d-flex flex-row">
+                            <form action="#">
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6" style="margin-left: 13px;">
+                                <div class="product_quantity"> <span>QTY: </span> <input id="quantity_input" type="text" pattern="[0-9]*" value="1">
+                                    <div class="quantity_buttons">
+                                        <div id="quantity_inc_button" class="quantity_inc quantity_control"><i class="fas fa-chevron-up"></i></div>
+                                        <div id="quantity_dec_button" class="quantity_dec quantity_control"><i class="fas fa-chevron-down"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6"> <button type="button" class="btn btn-primary shop-button">Add to Cart</button> <button type="button" class="btn btn-success shop-button">Buy Now</button>
+                                <div class="product_fav"><i class="fas fa-heart"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            
+      
+            <div class="row row-underline">
+                <div class="col-md-6"> <span class=" deal-text">Product Specifications</span> </div>
+                <div class="col-md-6"> <a href="#" data-abc="true"> <span class="ml-auto view-all"></span> </a> </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="col-md-12">
+                        <tbody>
+                            <p>Sed pellentesque accumsan magna, at venenatis urna pretium vel. In id placerat mi. Mauris nec pellentesque ipsum. Etiam ac malesuada ex. Suspendisse turpis elit, efficitur a diam ut, feugiat efficitur purus. Sed eu varius nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque viverra turpis eros, id tempor est finibus non. Duis sem magna, vehicula sit amet nibh at, aliquet tincidunt lectus.</p>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

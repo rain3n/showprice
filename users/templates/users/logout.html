@@ -1,0 +1,15 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+{% block css %}
+    <link href="{% static 'shop/main.css' %}" rel="stylesheet">
+{% endblock css %}
+
+
+{% block content %}
+    <div class="container mt-2">
+        <h3>You have been logged out.</h3>
+        <h3>Thank you for using ShowPrice.</h3>
+    </div>
+    
+{% endblock content %}

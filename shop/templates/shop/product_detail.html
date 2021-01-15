@@ -1,0 +1,78 @@
+{% extends "shop/base.html" %}
+{% load static %}
+{% load humanize %}
+
+{% block css %}
+<link href="{% static 'shop/product.css' %}" rel="stylesheet">
+{% endblock css %}
+
+{% block content %}
+<div class="super_container">
+    <div class="single_product">
+        <div class="container-fluid" style=" background-color: #76b852; padding: 11px;">
+            <div class="row">
+                <div class="col-lg-4 order-lg-2 order-1">
+                    <div class="image_selected"><img src="{{ product.productimage.image.url }}" alt=""></div>
+                    {% if user.sellerprofile == product.store %}
+                    <a href="{% url 'product-update' product.id %}" type="button" class="btn btn-primary">Edit
+                        Listing</a>
+                    <a href="{% url 'product-update-image' product.id %}" type="button" class="btn btn-info">Edit
+                        Picture</a>
+                    <a href="{% url 'product-delete' product.id %}" type="button" class="btn btn-danger">Delete
+                        Listing</a>
+                    {% endif %}
+                </div>
+
+
+                <div class="col-lg-6 order-3">
+                    <div class="product_description">
+                        <div class="product_name">{{ object.productName }}</div>
+                        <br>
+                        <!--    <div class="product-rating"><span class="badge badge-success"><i class="fa fa-star"></i> 4.5 Star</span> <span class="rating-review">35 Ratings & 45 Reviews</span></div>-->
+                        <div> <span class="product_price">₱ {{ object.productPrice|floatformat:2|intcomma }}</span>
+                        </div>
+
+                        <hr class="singleline">
+                        <div> <span class="product_info">{{ object.productDesc|linebreaks }}</div>
+
+                        <hr class="singleline">
+                        <div class="order_info d-flex flex-row">
+                            <form action="#">
+                        </div>
+                        <div class="row">
+                            <!----
+                            <div class="col-xs-6" style="margin-left: 13px;">
+                                <div class="product_quantity"> <span>QTY: </span> <input id="quantity_input" type="text" pattern="[0-9]*" value="1">
+                                </div>
+                            </div>
+----->
+                            <div class="col-xs-6" style="margin-left: 13px;">
+                                <div> <span class="stock mr-5">Items in stock: {{ object.productStocks }}</div>
+                            </div>
+                            <div class="col-xs-6"> <button data-product="{{object.id}}" data-action="add" type="button"
+                                    class="btn btn-primary update-cart">Add to Cart</button> <button type="button"
+                                    class="btn btn-success update-cart">Buy Now</button>
+                                <div class="product_fav"><i class="fas fa-heart"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row row-underline">
+                <div class="col-md-6"> <span class=" deal-text">Product Specifications</span> </div>
+                <div class="col-md-6"> <a href="#" data-abc="true"> <span class="ml-auto view-all"></span> </a> </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="col-md-12">
+                        <tbody>
+                            <p>{{ object.productSpecs|linebreaks }}</p>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

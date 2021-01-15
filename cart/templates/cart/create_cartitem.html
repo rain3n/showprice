@@ -1,0 +1,62 @@
+{% extends "cart/base.html" %}
+{% load thumbnail %}
+{% load static %}
+
+{% block css %}
+<link href="{% static 'cart/main.css' %}" rel="stylesheet">
+{% endblock css %}
+
+<!-- Page Content -->
+{% block cart %}
+
+<div class="heading mt-5 mb-5">
+    <h1>
+        Add to Cart
+    </h1>
+</div>
+
+<div class="table">
+<form method="POST">
+
+    <div class="layout-inline row th">
+        <div class="col col-pro pl-5 pr-5">Product</div>
+        <div class="col col-price align-center pl-5">
+            Price
+        </div>
+        <div class="col col-qty align-center">QTY</div>
+        <div class="col">Total</div>
+    </div>
+<div class="layout-inline row">
+    
+            
+    <div class="col-4 col-pro ">
+
+        <div class="media ml-3">
+            <img class="icon pt-2 pb-2" src="{{ product.productimage.image.url }}" />
+            <div class="media-body pt-3">
+                <p>{{cartitems.productName}}</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col col-price col-numeric align-center ">
+        <p>P {{ item.product.productPrice }}</p>
+    </div>
+   
+    <div class="col col-qty layout-inline">
+        
+            {% csrf_token %}				
+            {{ form.quantity }}
+            
+    </div>
+
+    <div class="col col-total col-numeric">
+        <p>P {{ cartitems.productPrice }}</p>
+       
+    </div>
+    <input type="submit" value="SIGNUP">
+</div>
+</form>
+</div>
+{% endblock %}
