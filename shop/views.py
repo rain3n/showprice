@@ -5,6 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.db.models import Q, F
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from itertools import chain
 import json
 
 from users.models import SellerProfile, SProfile
@@ -139,7 +140,9 @@ def product_query(request):
             Q(productTags__icontains=query)
         )
     if budget:
-        qs = qs.filter(productPrice__lte=budget)
+        qs2 = qs.filter(productPrice__gt=budget).order_by('productPrice')
+        qs1 = qs.filter(productPrice__lte=budget)
+        qs = list(chain(qs1, qs2))
            
     paginate = Paginator(qs, 9)
     page = request.GET.get('page')    
