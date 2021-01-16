@@ -137,12 +137,14 @@ def product_query(request):
             Q(productName__icontains=query) |
 #           Q(productDesc__icontains=query) |
 #           Q(productSpecs__icontains=query)|
-            Q(productTags__icontains=query)
+            Q(productTags__icontains=query) |
+            Q(store__storeName__icontains=query)
         )
     if budget:
-        qs2 = qs.filter(productPrice__gt=budget).order_by('productPrice')
-        qs1 = qs.filter(productPrice__lte=budget)
-        qs = list(chain(qs1, qs2))
+       qs = list(chain(
+            qs.filter(productPrice__lte=budget),
+            qs.filter(productPrice__gt=budget).order_by('productPrice'),
+            ))
            
     paginate = Paginator(qs, 9)
     page = request.GET.get('page')    

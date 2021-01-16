@@ -11,7 +11,6 @@ def register(request):
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
-            #messages.success(request, f'Account Created!')
             return redirect('login')
     else:
         form = UserRegisterForm()
@@ -81,22 +80,3 @@ def seller_profile(request):
 
     return render(request, 'users/seller.html', context)
 
-
-#@login_required
-#def profile(request):
-#    if request.method == 'POST':
-#        bp_form = BuyerProfileUpdateForm(request.POST, instance=request.user)
-        
-#        if bp_form.is_valid():
-#            bp_form.save()
-#            messages.success(request, f'Your Account Has Been Updated!')
-#            return redirect('profile')
-
-#    else:
-#        bp_form = ProfileUpdateForm(instance=request.user)
-        
-#    context = {
-#        'bp_form': bp_form,
-#    }
-
-#    return render(request, 'users/profile.html', context)

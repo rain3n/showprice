@@ -13,16 +13,26 @@
   <div class="row">
 
     <div class="col-lg-3">
-      <img class="rounded-circle account-img" src="{{ products.0.store.user.sprofile.image.url }}" alt="">
+
+      {% if products %}
+        <img class="rounded-circle account-img" src="{{ products.0.store.user.sprofile.image.url }}" alt="">
+      {% endif %}
+
       <h1 class="mt-4 mb-2"> {{ view.kwargs.storename }} </h1>
       <h6 class="mt-2 mb-4"> {{ page_obj.paginator.count }} Items in Shop </h6>
-      <div class="list-group">
-        <a href="#" class="list-group-item">Category 1</a>
-        <a href="#" class="list-group-item">Category 2</a>
-        {% if user.is_authenticated %}
-        <a href="{% url 'product-create' %}" class="list-group-item">Add Product (temporary position)</a>
+      
+      {% if user.is_authenticated %}
+        {% if view.kwargs.storename == user.sellerprofile.storeName %}
+        <div class="list-group mb-4">
+          <h3 class="list-group-item">Menu</h3>
+            <a href="{% url 'product-create' %}" class="list-group-item">Add Product</a>
+        </div>
+        {% else %}  
+        <div class="list-group mb-4">
+        </div>
         {% endif %}
-      </div>
+      {% endif %}
+      
 
     </div>
     <!-- /.col-lg-3 -->
@@ -31,7 +41,7 @@
 
       <div class="row">
         {% if products is None %}
-          <p>No product found.</p>
+          <p>No product found or shop does not exist.</p>
         {% endif %}
         
         {% for product in products %}
@@ -52,7 +62,7 @@
               </p>
             </div>
             <div class="card-footer">
-              <small class="text-muted">{{ product.store.storeAddress }} - {{ product.store.storeName }}</small>
+              <small class="text-muted">{{ product.store.storeAddress }} - <a href="{% url 'shop-list' product.store %}">{{ product.store.storeName }}</a>  </small>
             </div>
           </div>
         </div>

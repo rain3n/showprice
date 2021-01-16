@@ -17,11 +17,9 @@
 
     <div class="row pl-4 pt-2 pb-2">
 
-        <div class="col-3">
+        <div class="col-3 offset-9">
             <a href="{% url 'shop-home' %}" class="btn btn-primary">Continue Shopping</a>
         </div>
-
-
 
     </div>
     <div class="table">
@@ -79,10 +77,19 @@
                     <p>Total</p>
                 </div>
                 <div class="col pl-3">
-                    <p class="align-center ml-5">P {{ cartitems.0.cart.get_cart_total|floatformat:2|intcomma }}</p>
+                    {% if cartitems.0.cart.get_cart_total is None %}
+                        <p class="align-center ml-5">P 0.00
+                    {% else %}
+                        <p class="align-center ml-5">P {{ cartitems.0.cart.get_cart_total|floatformat:2|intcomma }}</p>
+                    {% endif %}
+                    
                 </div>
             </div>
         </div>
+        
+    </div>
+    <div class="col-3 offset-9 mb-5 pl-4 pt-2">
+        <a href="{% url 'checkout' %}" class="btn btn-primary ">Proceed to Checkout</a>
     </div>
     <br>
 </div>

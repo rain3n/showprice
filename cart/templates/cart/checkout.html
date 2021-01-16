@@ -1,0 +1,70 @@
+{% extends "cart/base.html" %}
+{% load humanize %}
+{% load thumbnail %}
+{% load static %}
+
+{% block css %}
+<link href="{% static 'cart/main.css' %}" rel="stylesheet">
+{% endblock css %}
+
+{% block cart %}
+
+
+<a class="btn btn-secondary offset-1" href="{% url 'my-cart' %}">&#x2190; Back to Cart</a>
+<div class="row mt-2 offset-1">
+
+    <div class="col-10 ml-2 table mb-5">
+
+        {% if user.buyerprofile.buyerName == '' %}
+        
+        <h5 class="m-5">Set up <a href="{% url 'buyer-profile' %}">buyer profile</a> to checkout.</h3>
+
+        {% else %}
+            
+            <div class="box-element mt-4 ml-3">
+                {% if not cartitems %}
+                    <h3 class="m-3">Your order is empty.</h3>
+                {% else %}
+                    <h3>Order Summary</h3>
+                    <hr>
+
+                    {% for item in cartitems %}
+                    <div class="row ml-5">
+                        <img class="icon pt-2 pb-2" src="{{ item.product.productimage.image.url }}" />
+                        <div class="col ml-4">
+                            <p>{{ item.product.productName }}</p>
+                        </div>
+                        <div class="col">
+                            <p>P {{ item.product.productPrice|floatformat:2|intcomma }}</p>
+                        </div>
+                        <div class="col">
+                            <p>x{{ item.quantity }} </p>
+                        </div>
+                    </div>       
+                    {% endfor %}
+                    <hr>
+                    <div class="row pb-3">
+                        <div class="col-4">
+                            <h6>Reserve for: <strong>{{ user.buyerprofile.buyerName }}</strong></h6>
+                            <h6>Contact Number: <strong>{{ user.buyerprofile.buyerContactNumber }}</strong></h6>
+                            <a href="{% url 'buyer-profile' %}">Edit buyer profile</a>
+                        </div>
+                        <div class="col-4 offset-1">
+                            <h6>Items: <strong>{{ cartitems.0.cart.get_cart_items|intcomma }}</strong> </h6>
+                            <h5>Total: <strong>P {{ cartitems.0.cart.get_cart_total|floatformat:2|intcomma }}</strong> </h5>
+                        </div>
+                        <div class="col">
+                            <button class="btn btn-primary">
+                                Reserve Items
+                            </button>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+    
+</div>
+
+
+{% endblock %}

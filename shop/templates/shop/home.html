@@ -15,14 +15,16 @@
     <div class="col-lg-3">
 
       <h1 class="my-4">Welcome to ShowPrice</h1>
+      {% if user.is_authenticated %}
       <div class="list-group mb-4">
-        <a href="#" class="list-group-item">Category 1</a>
-        <a href="#" class="list-group-item">Category 2</a>
-        {% if user.is_authenticated %}
-        <a href="{% url 'product-create' %}" class="list-group-item">Add Product (temporary position)</a>
+        <h3 class="list-group-item">Menu</h3>
+        {% if user.sellerprofile.storeName %}
+          <a href="{% url 'product-create' %}" class="list-group-item">Add Product</a>
+        {% else %}
+          <a class="list-group-item" href="{% url 'seller-profile' %}">Start Selling Today!</a>  
         {% endif %}
       </div>
-
+      {% endif %}
     </div>
     <!-- /.col-lg-3 -->
 
